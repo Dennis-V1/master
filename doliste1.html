@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -61,12 +61,23 @@
    
     </div>
     <template id="task-template">
-      <div class="task">
+      <div class="task" draggable="true" ondragstart="dragStart(event)" id="dragelement">
         <input type="checkbox" />
         <label>
           <span class="custom-checkbox"></span>
         </label>
       </div>
     </template>
+    <div class="completed-task" draggable="true" ondragover="allowDrop(event)"ondrop="" > 
+      <h3>Geschaffte Aufgaben</h3>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <label>
+        
+      </label>
+    </div>
   </body>
 </html>
