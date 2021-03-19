@@ -66,6 +66,8 @@ newTaskForm.addEventListener('submit', e => {
   saveAndRender()
 })
 
+
+
 function createList(name) {
   return { id: Date.now().toString(), name: name, tasks: [] }
 }
@@ -131,6 +133,66 @@ function renderLists() {
     listsContainer.appendChild(listElement)
   })
 }
+
+var drag =null;
+
+function dragStart(ev){
+  //let id=ev.target
+  drag =this;
+
+  ev.dataTransfer.effectAllowed = 'move';
+  ev.dataTransfer.setData('text/html', this.outerHTML);
+  this.classList.add('dragElem');
+  //alert(id);
+}
+
+function allowDrop(ev){
+  ev.preventDefault();
+  this.classList.add('over');
+
+  ev.dataTransfer.dropEffect = 'move';
+  return false;
+}
+
+function dragEnter(ev) {
+
+}
+
+function handleDragLeave(ev) {
+  this.classList.remove('over');
+}
+
+function drop(ev){
+  if (e.stopPropagation) {
+    e.stopPropagation();
+  }
+  if (drag != this) {
+    this.parentNode.removeChild(drag);
+    var dropHTML = e.dataTransfer.getData('text/html');
+    this.insertAdjacentHTML('beforebegin',dropHTML);
+    var dropElem = this.previousSibling;
+    addDnDHandlers(dropElem);
+    ev.target.append(document.getElementById(id));
+  }
+  this.classList.remove('over');
+  return false;
+}
+function dragEnd(ev) {
+  // this/e.target is the source node.
+  this.classList.remove('over');
+  }
+  function addDnDHandlers(elem) {
+    elem.addEventListener('dragstart', dragStart, false);
+    elem.addEventListener('dragenter', dragEnter, false)
+    elem.addEventListener('dragover', allowDrop, false);
+    elem.addEventListener('dragleave', handleDragLeave, false);
+    elem.addEventListener('drop', drop, false);
+    elem.addEventListener('dragend', dragEnd, false);
+  
+  }
+  
+  var cols = document.querySelectorAll('#tasks .task');
+  [].forEach.call(cols, addDnDHandlers);
 
 function clearElement(element) {
   while (element.firstChild) {
