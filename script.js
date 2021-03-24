@@ -133,66 +133,30 @@ function renderLists() {
     listsContainer.appendChild(listElement)
   })
 }
+//drag and drop /////////////////////////////////////////////////////
+var dropTarget = document.querySelector("task");
+var draggables =document.querySelectorAll("task");
 
-var drag =null;
-
-function dragStart(ev){
-  //let id=ev.target
-  drag =this;
-
-  ev.dataTransfer.effectAllowed = 'move';
-  ev.dataTransfer.setData('text/html', this.outerHTML);
-  this.classList.add('dragElem');
-  //alert(id);
+for(let i = 0; i < draggables.length; i++) {
+  draggables[i].addEventListener("dragstart", function (ev) {
+     ev.dataTransfer.setData("srcId", ev.target.id);
+  });
 }
-
-function allowDrop(ev){
+dropTarget.addEventListener('dragover', function(ev) {
   ev.preventDefault();
-  this.classList.add('over');
+});
 
-  ev.dataTransfer.dropEffect = 'move';
-  return false;
-}
-
-function dragEnter(ev) {
-
-}
-
-function handleDragLeave(ev) {
-  this.classList.remove('over');
-}
-
-function drop(ev){
-  if (e.stopPropagation) {
-    e.stopPropagation();
-  }
-  if (drag != this) {
-    this.parentNode.removeChild(drag);
-    var dropHTML = e.dataTransfer.getData('text/html');
-    this.insertAdjacentHTML('beforebegin',dropHTML);
-    var dropElem = this.previousSibling;
-    addDnDHandlers(dropElem);
-    ev.target.append(document.getElementById(id));
-  }
-  this.classList.remove('over');
-  return false;
-}
-function dragEnd(ev) {
-  // this/e.target is the source node.
-  this.classList.remove('over');
-  }
-  function addDnDHandlers(elem) {
-    elem.addEventListener('dragstart', dragStart, false);
-    elem.addEventListener('dragenter', dragEnter, false)
-    elem.addEventListener('dragover', allowDrop, false);
-    elem.addEventListener('dragleave', handleDragLeave, false);
-    elem.addEventListener('drop', drop, false);
-    elem.addEventListener('dragend', dragEnd, false);
+dropTarget.addEventListener('drop', function(ev) {
+  ev.preventDefault();
+  let target = ev.target;
+  let droppable  = target.classList.contains('completed-task');
+  let srcId = ev.dataTransfer.getData("srcId");
   
+  if (droppable) {
+    ev.target.appendChild(document.getElementById(srcId));
   }
-  
-  var cols = document.querySelectorAll('#tasks .task');
-  [].forEach.call(cols, addDnDHandlers);
+});
+//drag and drop end //////////////////////////////////////////////////
 
 function clearElement(element) {
   while (element.firstChild) {

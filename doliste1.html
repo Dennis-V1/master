@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Todo list</title>
  
-    <link rel="stylesheet" href="style.css" />
     <script defer src="script.js"></script>
   </head>
 
@@ -61,14 +60,15 @@
    
     </div>
     <template id="task-template">
-      <div class="task" draggable="true" ondragstart="dragStart(event)" id="dragelement">
+      <div class="task" draggable="true">
         <input type="checkbox" />
         <label>
           <span class="custom-checkbox"></span>
         </label>
-      </div>
+      </div> 
+      
     </template>
-    <div class="completed-task" draggable="true" ondragover="allowDrop(event)"ondrop="" > 
+    <div class="completed-task" draggable="true"> 
       <h3>Geschaffte Aufgaben</h3>
       <ul>
         <li></li>
