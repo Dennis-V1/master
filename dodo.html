@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Todo list</title>
+</head>
+<body>
+    <h1 class="title">Todoliste</h1>
+    
+    <div class="aufgabenListe" >
+        <h2 class=listentitel>Todods</h2>
+        <div class="listeDerTodods">
+            <input id="inputField" placeholder="Neue Liste Hinzufügen" type="text"><button id="addToDo">+</button>
+            <div class="to-dos" draggable="true" id="listeTodos">
+            </div>
+        </div>
+    </div>
+
+    <div id="inArbeit" class="Arbeittodo">
+        <h3>In Arbeit</h3>
+        <ul id="todoInArbeit" draggable="true"></ul>
+    </div>    
+    <div id="doneTodos" class="doneTododo">
+        <h4>Fertig</h4>
+        <ul id="todofertigListe" draggable="true"></ul>
+    </div>
+
+    <script src="main.js"></script>
+
+
+</body>
+
+
+</html>
