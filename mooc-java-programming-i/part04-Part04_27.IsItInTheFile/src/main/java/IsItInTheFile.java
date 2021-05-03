@@ -13,6 +13,5 @@ public class IsItInTheFile {
         System.out.println("Search for:");
         String searchedFor = scanner.nextLine();
 
-	//test
     }
 }
