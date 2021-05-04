@@ -1,0 +1,8 @@
+10, New Silvan Turbo, 7.5, 20
+11, Afrim und Bashkim, 6, 20
+12, Daniel allein zu Haus, 4.5, 20
+13, Call of Duty - Phillips War PC, 30, 20
+14, Call of Duty - Phillips War PS4, 40, 20
+15, Cybernico 2077 PC, 40, 20
+16, Cybernico 2077 PS4, 50, 20
+        
