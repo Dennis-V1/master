@@ -52,15 +52,16 @@ public class Abfrage {
         if ("y".equals(antwortKundeaufFrage)) {
             System.out.println("Welches Produkt möchten sie gerne kaufen?");
             productid = abfragen.nextInt();
+            //for(Artikel art: artikelListe){
+              // int id = art.getId();
             //ich muss die ids in einem extra array speicher um dieses am ende aus zu lesen
-            for (Artikel art : artikelListe ){
-                // int id = art.getId();  nichtmehr benötigt :)
-                String bez = art.getArtikelBez();
-                int anzahlen = 0;
-                System.out.println("Wie viele" + bez + "wollen sie kaufen?"); anzahlen = abfragen.nextInt(); 
-                art.setanzahlKaufen(anzahlen);
-                }
-
+                for (Artikel art : artikelListe ){
+                    // int id = art.getId();  nichtmehr benötigt :)
+                    String bez = art.getArtikelBez();
+                    int anzahlen = 0;
+                    System.out.println("Wie viele" + bez + "wollen sie kaufen?"); anzahlen = abfragen.nextInt(); 
+                    art.setanzahlKaufen(anzahlen);
+                    }
             } else if("n".equals(antwortKundeaufFrage)){
             System.out.println("Danke für ihren Besuch, das Programm wird automatisch geschlossen!");
             break;
