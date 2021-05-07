@@ -61,6 +61,7 @@ public class Abfrage {
                     int anzahlen = 0;
                     System.out.println("Wie viele" + bez + "wollen sie kaufen?"); anzahlen = abfragen.nextInt(); 
                     art.setanzahlKaufen(anzahlen);
+                    //art.getanzahlKaufen();
                     }
             } else if("n".equals(antwortKundeaufFrage)){
             System.out.println("Danke für ihren Besuch, das Programm wird automatisch geschlossen!");
@@ -74,4 +75,5 @@ public class Abfrage {
         // ende while
         
     }
+    
 }

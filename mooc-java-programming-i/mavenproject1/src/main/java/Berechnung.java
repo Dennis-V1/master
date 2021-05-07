@@ -3,6 +3,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
+import java.util.Iterator;
+import java.util.ArrayList;
 
 public class Berechnung {
     int anzahlen;
@@ -39,16 +41,28 @@ public class Berechnung {
         return art;
     }
     
-    public void Berechnunug(int anzahlen, double preis, double netto) {
-        //anzahlen * (preis * 1.19)  
-        get anzahlkaufen(anzahlen); //diese Methode muss noch implementiert werden
-        gesamtpreis = (preis * netto) * anzahlen;
-        
-    }  
-    public void getGesamtMenge(){
-        for (Integer anzahlen: art){
+    public void KundenNettoPreisBerechnunug(Artikel art, ArrayList<Artikel> alleArtikel) {
+        //anzahlen * (preis * 1.19)
+        for (Artikel kaufenArtikel: alleArtikel){
+            int anzahlKaufen = kaufenArtikel.anzahlKaufen;
             
         }
+        for (Iterator<Artikel> it = artikelListe.iterator(); it.hasNext();) {
+            gesamtpreis = (preis * netto) * anzahlen;
+        }
+        
+    } 
+    public void KundenPreis(ArrayList<Artikel> i){
+        int kostenpunkt;
+        for (Artikel art : i){
+            
+            kostenpunkt = art.getanzahlKaufen();
+            
+        }
+    }
+    
+    public void getGesamtMenge(){
+                
     }
     public void NachlassBerechnunug() {
        
