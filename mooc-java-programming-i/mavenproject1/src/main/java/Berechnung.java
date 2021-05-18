@@ -13,14 +13,16 @@ public class Berechnung {
     double gesamtpreis;
     double nachlass;
     int gesamtMenge;
-    File artikelFile = new File("C:\\Users\\Dennis\\Documents\\NetBeansProjects\\mavenproject1\\src\\main\\java\\Artikel.txt");
+    File artikelFile = new File("Artikel.txt");
     ArrayList<Artikel> artikelListe = new ArrayList<>();
     
     int menge1;
     String bez;
     int id;
     String [] parts;
-
+    public void Berechnen(){
+        
+    }
     public void readArticleFromFile(String fileLine) throws FileNotFoundException{   
         Scanner scanner = new Scanner(artikelFile);
         while (scanner.hasNextLine()){
