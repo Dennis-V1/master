@@ -10,6 +10,9 @@ public class Program {
         System.out.println("Enter your edge length here.");
         int edgeLength = scanner.nextInt();
         Cube cube1 = new Cube(edgeLength);
+        
         System.out.println(cube1);
+        //2
+        //System.out.println(cube1.volume);
     }
 }

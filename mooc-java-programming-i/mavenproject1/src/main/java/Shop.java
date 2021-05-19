@@ -7,7 +7,7 @@ public class Shop{
     
     public static void main(String[] args) {
         
-        Scanner scan = new Scanner(System.in);    
+        //Scanner scan = new Scanner(System.in);    
         Abfrage Gruss = new Abfrage(); 
         Berechnung Berechnen = new Berechnung();
         
@@ -16,6 +16,7 @@ public class Shop{
         Gruss.Gruss("");
         Gruss.Kaufen("");
         
+        Berechnen.KundenNettoPreisBerechnunug();
                 
     }        
 }

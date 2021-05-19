@@ -63,8 +63,8 @@ public class Abfrage {
         System.out.println("wollen sie einen Artikel kaufen? y Beginnt die Abfrage und n Bricht das Programm ab, f bringt sie zur Kasse");
         String antwortKundeaufFrage = abfragen.next();
         if ("y".equals(antwortKundeaufFrage)) {
-            System.out.println("Welches Produkt möchten sie kaufen?");
-            productid = abfragen.nextInt();
+//            System.out.println("Welches Produkt möchten sie kaufen?");
+//            productid = abfragen.nextInt();
             
             //System.out.println(artikelListe.size());
             for (Artikel art : artikelListe ){
@@ -76,7 +76,10 @@ public class Abfrage {
             }
         }else if("f".equals(antwortKundeaufFrage)){
             System.out.println("Sie werden zur Kasse geleitet!");
-                
+            
+//            System.out.println("print loop");
+//            for(int i=0; i < art.getanzahlKaufen(); i++)
+//                System.out.println(art.get(i));
             //////////////////
             //Berechnen.KundenPreis(ArrayList<Artikel> i);
             //////////////////
@@ -85,7 +88,6 @@ public class Abfrage {
             System.out.println("Danke für ihren Besuch, das Programm wird automatisch geschlossen!");
             break;
         } else {
-            //ich muss hier noch eine falscheingabe implementieren
             System.out.println("Ihre eingabe war inkorrekt, bitte geben sie y für Ja und n für Nein ein.");
             //break rep;   //https://stackoverflow.com/questions/18159965/errorundefined-label-how-to-use-label-statement-in-this-code-in-java
             }

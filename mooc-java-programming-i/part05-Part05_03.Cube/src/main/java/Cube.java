@@ -10,16 +10,17 @@
  */
 public class Cube {
     private int length;
-    private int volume;
+    
     
     public Cube (int edgeLength){
         this.length = edgeLength;
     }
     public int volume(){
-        this.volume = this.length * this.length * this.length;
-        return volume;
+        int volumen = this.length * this.length * this.length;
+        return volumen;
     }
     public String toString() {
-        return "The length of the edge is " + this.length + " and the volume " + this.volume;
+        return "The length of the edge is " + this.length + " and the volume " + this.volume();
+        
     }
 }

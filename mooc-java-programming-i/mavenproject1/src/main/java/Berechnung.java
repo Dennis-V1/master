@@ -52,7 +52,7 @@ public class Berechnung {
         for (Iterator<Artikel> it = artikelListe.iterator(); it.hasNext();) {
             gesamtpreis = (preis * netto) * anzahlen;
         }
-        
+        System.out.println("ihr zu zahlender Preis ist " + gesamtpreis + "€");
     } 
     public void KundenPreis(ArrayList<Artikel> i){
         int kostenpunkt;
