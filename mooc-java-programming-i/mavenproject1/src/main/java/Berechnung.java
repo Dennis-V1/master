@@ -43,13 +43,14 @@ public class Berechnung {
         return art;
     }
     
-    public void KundenNettoPreisBerechnunug(Artikel art, ArrayList<Artikel> alleArtikel) {
+    public void KundenNettoPreisBerechnunug(ArrayList<Artikel> alleArtikel) {
         //anzahlen * (preis * 1.19)
-        for (Artikel kaufenArtikel: alleArtikel){
-            int anzahlKaufen = kaufenArtikel.anzahlKaufen;
+//        for (Artikel kaufenArtikel: alleArtikel){
+//            int anzahlKaufen = kaufenArtikel.anzahlKaufen;
             
-        }
-        for (Iterator<Artikel> it = artikelListe.iterator(); it.hasNext();) {
+//        }
+        
+        for (Iterator<Artikel> artikel = artikelListe.iterator(); artikel.hasNext();) {
             gesamtpreis = (preis * netto) * anzahlen;
         }
         System.out.println("ihr zu zahlender Preis ist " + gesamtpreis + "€");
@@ -63,10 +64,20 @@ public class Berechnung {
         }
     }
     
-    public void getGesamtMenge(){
-                
+    public void getGesamtMenge(ArrayList<Artikel> i){
+        int gesamtMenge = 0;
+        for (Artikel art : i){
+            
+            gesamtMenge = gesamtMenge + art.getanzahlKaufen();
+        }
     }
     public void NachlassBerechnunug() {
-       
+        nachlass = 0.03;
+    }
+    public void AusgabeRechnunug(){
+        for(Artikel a : artikelListe){
+            System.out.println(a);
+            //soll mir anzeigen was in meiner Artikelliste ist. https://stackoverflow.com/questions/2047003/print-arraylist-element/46814414
+        } 
     }
 }
