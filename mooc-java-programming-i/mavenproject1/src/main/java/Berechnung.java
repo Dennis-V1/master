@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Berechnung {
     int anzahlen;
     double preis;
-    double netto;
+    double netto = 1.19;
     double gesamtpreis;
     double nachlass;
     int gesamtMenge;
@@ -43,41 +43,35 @@ public class Berechnung {
         return art;
     }
     
-    public void KundenNettoPreisBerechnunug(ArrayList<Artikel> alleArtikel) {
-        //anzahlen * (preis * 1.19)
-//        for (Artikel kaufenArtikel: alleArtikel){
-//            int anzahlKaufen = kaufenArtikel.anzahlKaufen;
-            
-//        }
-        
-        for (Iterator<Artikel> artikel = artikelListe.iterator(); artikel.hasNext();) {
-            gesamtpreis = (preis * netto) * anzahlen;
-        }
-        System.out.println("ihr zu zahlender Preis ist " + gesamtpreis + "€");
-    } 
-    public void KundenPreis(ArrayList<Artikel> i){
-        int kostenpunkt;
-        for (Artikel art : i){
-            
-            kostenpunkt = art.getanzahlKaufen();
-            
-        }
-    }
-    
-    public void getGesamtMenge(ArrayList<Artikel> i){
+    public void rechnungBerechnenUndAusgeben(ArrayList<Artikel> i){
         int gesamtMenge = 0;
+        double gesamtpreisNachlass;
+        nachlass = 0.03;
+        System.out.println("Sie Kaufen: ");
         for (Artikel art : i){
             
             gesamtMenge = gesamtMenge + art.getanzahlKaufen();
+            if(art.getanzahlKaufen() > 0){
+                System.out.println(art.bez + " " + art.anzahlKaufen);
+            }
+        }
+        for (Iterator<Artikel> artikel = artikelListe.iterator(); artikel.hasNext();) {
+            gesamtpreis = (Artikel.getpreis(preis) * netto) * anzahlen;   
+//??? cannot find symbol   symbol:   method getpreis(double)    location: class Artikel
+        }  
+        if(gesamtMenge > 3){
+            gesamtpreisNachlass = gesamtpreis - (gesamtpreis * nachlass);
+            System.out.println("Ihr zu zahlender Preis ist " + gesamtpreisNachlass + "€");
+        }else{
+            System.out.println("Ihr zu zahlender Preis ist " + gesamtpreis + "€");
         }
     }
-    public void NachlassBerechnunug() {
-        nachlass = 0.03;
-    }
-    public void AusgabeRechnunug(){
+
+    public void ausgabeRechnunug(){
         for(Artikel a : artikelListe){
             System.out.println(a);
             //soll mir anzeigen was in meiner Artikelliste ist. https://stackoverflow.com/questions/2047003/print-arraylist-element/46814414
+            
         } 
     }
 }
