@@ -1,0 +1,26 @@
+
+LINK
+https://www.inf-schule.de/information/datenbanksysteme/terra/relationaledb/uebungen
+
+3.) 
+SELECT Einwohner , Name , Hauptstadt FROM land
+ORDER BY Einwohner DESC
+
+4.)
+Select Name FROM land WHERE Kontinent = 'Europa';
+
+5.)
+Select Name FROM land WHERE Einwohner BETWEEN 10 AND 100 ORDER BY Einwohner DESC;
+
+6.)
+SELECT NAME FROM land WHERE Name LIKE '%Arm%' OR '%Bein%';
+SELECT Name FROM ort WHERE Name LIKE '%Arm%' OR '%Bein%';
+
+7.)
+SELECT Name FROM ort WHERE Breite > 7.768 AND Land = 'Deutschland';
+
+8.)
+Welche Länder liegen in Asien und Australien?  // Die frage sagt aus das das gefragte land in beiden Kontinenten liegen muss,  
+darum die AND abfrage
+
+SELECT Name FROM land WHERE Kontinent = 'Asien' AND 'Australien';
