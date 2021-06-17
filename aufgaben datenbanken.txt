@@ -132,6 +132,7 @@ Ich weis nicht was BSP 2 gemeint ist.
 
 
 Aufgabe 4.)
+https://www.inf-schule.de/information/datenbanksysteme/terra/beziehungstabelle/uebungen
 
 1 .)
 klappt noch nicht doppelter INnerjoin nicht vollständig richtig ausgeschrieben.
