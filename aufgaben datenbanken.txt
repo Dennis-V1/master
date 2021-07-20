@@ -1,0 +1,245 @@
+
+
+LINK
+https://www.inf-schule.de/information/datenbanksysteme/terra/relationaledb/uebungen
+Aufgaben nr 1
+
+3.) 
+SELECT Einwohner , Name , Hauptstadt FROM land
+ORDER BY Einwohner DESC
+
+4.)
+Select Name FROM land WHERE Kontinent = 'Europa';
+
+5.)
+Select Name FROM land WHERE Einwohner BETWEEN 10 AND 100 ORDER BY Einwohner DESC;
+
+6.)
+SELECT NAME FROM land WHERE Name LIKE '%Arm%' OR Name LIKE '%Bein%';
+SELECT Name FROM ort WHERE Name LIKE '%Arm%' OR Name LIKE '%Bein%';
+
+7.)
+SELECT Name FROM ort WHERE Laenge < 7.768 AND Land LIKE 'Deutschland';
+
+8.)
+Welche Länder liegen in Asien und Australien?  // Die frage sagt aus das das gefragte land in beiden Kontinenten liegen muss,  
+darum die AND abfrage
+
+SELECT Name FROM land WHERE Kontinent = 'Asien' AND 'Australien';
+
+
+
+Aufgaben nr 2
+
+https://www.inf-schule.de/information/datenbanksysteme/terra/datenverknuepfen/uebungen
+
+Stelle dir vor, du willst die folgenden Dinge in einer Datenbanktabelle speichern:
+
+1 die in Deutschland zugelassenen Autos
+2 alle zur Zeit erhältlichen Bücher
+3 alle Schülerinnen und Schüler in deiner Schule
+4 die Lehrerinnen und Lehrer deiner Schule
+Welche Primärschlüssel könnte man dann jeweils wählen? Wo sollte man einen "künstlichen" Primärschlüssel einfügen?
+
+1 Nummernschild
+2 ISBN
+3 Künstliche id = Shüler id
+4 Künstliche id = Lehrer id
+
+2.)
+a.) Es wäre in der momentanen Tabelle ein möglichkeit als primärschlusser verwendet zu werdend da alle namen nur einmal vorkommen.
+b.) weil viele daten sich doppeln ist es nicht gut möglich einen primärschlüssel zu bestimmen, ein künstlicher Schlüssel sollte verwendet werden
+c.) Schüler
+d.) Schüler id 
+
+3.) Orte sind in der Regel einem bestimmten Land zugeordnet. Wie muss die Tabelle "ort" aus dem letzten Kapitel verändert werden,
+ so dass man von dort auf die entsprechenden Länderdaten zugreifen kann?
+
+Es wäre möglich die Ländernummer LNR in beide Tabellen ein zu fügen um eindeutig die länder zu identifizieren zu können. und diese als Primary key/foreign 
+key für die identifikation zu setzten, die restlichen daten können mit einem Join übernommen werden.
+
+4.) Formuliere SQL-Befehle für die folgenden Anfragen. Dabei reichen zunächst einmal die Tabellen land und kontinent aus:
+a.) Gib alle Länder (Namen, Einwohner) aus, die in Asien liegen.
+b.) Sortiere die asiatischen Länder noch nach der Einwohnerzahl absteigend.
+c.) Welche europäischen Länder haben mehr als 300.000 km2 Fläche?
+
+
+ALTER TABLE land ADD FOREIGN KEY (KNR) REFERENCES kontinent(KNR);
+
+a.b. SELECT land.Name , land.Einwohner, kontinent.Name FROM land,  kontinent WHERE kontinent.Name LIKE 'Asien' ORDER BY land.Einwohner DESC;
+c. SELECT land.Name, land.Flaeche FROM land WHERE land.Flaeche > 300000;
+
+
+
+
+5.)
+Die folgenden Abfragen beziehen sich jetzt auf alle drei Tabellen (ort, land, kontinent) der terra3-Datenbank, deren Schema du hier siehst:
+
+a. Gib alle Orte mit mehr als 10 Mio. Einwohner mit ihren Ländern aus. Sortierung nach Einwohnerzahl absteigend.
+b. Welche Orte in Europa haben mehr als 1 Mio. Einwohner?
+c. Welche Orte haben mehr als 1 Mio. Einwohner und liegen in Ländern, die weniger als 10 Mio. Einwohner haben?
+d. Erzeuge eine Tabelle mit den Hauptstädten der Länder.
+   Hilfe: Das Attribut HauptONR in der land-Tabelle kann helfen!
+
+
+a. SELECT ort.Name, land.Name, ort.Einwohner FROM ort JOIN land ON ort.LNR=land.LNR 
+WHERE ort.Einwohner > 10000000 ORDER BY ort.Einwohner DESC;
+
+b. SELECT ort.Name, ort.Einwohner, land.Name, kontinent.name FROM ort JOIN land ON ort.LNR=land.LNR JOIN kontinent ON land.KNR = kontinent.KNR 
+WHERE ort.Einwohner >= 1000000 AND kontinent.name = 'Europa' ORDER BY ort.Einwohner DESC;
+
+c. SELECT ort.Name, ort.Einwohner, land.Einwohner FROM ort JOIN land ON ort.LNR = land.LNR WHERE ort.Einwohner > 1000000 AND land.Einwohner < 10;
+
+d. SELECT ort.Name, land.Name FROM land JOIN ort ON land.HauptONR = ort.ONR;
+
+
+
+
+
+
+Aufgaben 3.)
+https://www.inf-schule.de/information/datenbanksysteme/terra/ausgabeverbessern/uebungen
+
+1.)
+SELECT ort.Name, ort.Breite FROM ort JOIN land ON ort.LNR = land.LNR WHERE Breite > 65 ORDER BY ort.Breite DESC; 
+
+2.)
+SELECT land.Name FROM land JOIN ort ON HauptONR = ONR WHERE ort.Breite < 0; 
+
+
+3.) Ich habe das Problem das alle Kontinente immer angezeigt werden egal wie ich die filter setze. Pls fix
+
+SELECT kontinent.name FROM kontinent, land JOIN ort ON land.HauptONR = ort.ONR WHERE ort.Breite < 0;
+
+
+SELECT kontinent.name FROM kontinent, ort, land WHERE land.HauptONR = ort.ONR AND ort.Breite < 0;
+
+evtl lösung? gibt aber 100 mal Afrika aus
+SELECT kontinent.Name FROM kontinent INNER JOIN (land INNER JOIN ort ON ort.LNR = land.LNR AND ort.Breite < 0) ON land.KNR = kontinent.KNR;
+SELECT kontinent.Name FROM kontinent INNER JOIN (land INNER JOIN ort ON ort.LNR = land.LNR) ON land.KNR = kontinent.KNR WHERE ort.Breite < 0;
+lösung?
+SELECT DISTINCT kontinent.Name FROM kontinent, land, ort WHERE kontinent.KNR = land.KNR AND land.LNR = ort.LNR AND ort.Breite < 0;
+
+4.)
+Ich weis nicht was BSP 2 gemeint ist.
+
+
+
+
+
+
+
+
+
+Aufgabe 4.)
+https://www.inf-schule.de/information/datenbanksysteme/terra/beziehungstabelle/uebungen
+
+1 .)
+klappt noch nicht doppelter INnerjoin nicht vollständig richtig ausgeschrieben.
+
+SELECT ort.Name FROM ort JOIN stadtfluss ON ort.ONR = stadtfluss.ONR JOIN fluss ON stadtfluss.FNR = fluss.FNR WHERE fluss.Name LIKE 'Saar';
+
+2 .)
+SELECT fluss.Name FROM fluss
+JOIN stadtfluss ON fluss.FNR = stadtfluss.FNR
+JOIN ort ON stadtfluss.ONR = ort.ONR
+WHERE ort.Name like 'Hann. Münden';
+
+3 .)
+SELECT ort.Name, stadtfluss.KM FROM ort
+JOIN stadtfluss ON ort.ONR = stadtfluss.ONR
+JOIN fluss ON stadtfluss.FNR = fluss.FNR
+WHERE ort.Landesteil like 'Rheinland-Pfalz' AND fluss.Name like 'Rhein'
+ORDER BY stadtfluss.KM ASC;
+
+4 .)
+SELECT DISTINCT land.Name FROM land
+JOIN ort ON land.LNR = ort.LNR
+JOIN stadtfluss ON ort.ONR = stadtfluss.ONR
+JOIN fluss ON stadtfluss.FNR = fluss.FNR
+WHERE fluss.Name like 'Donau';
+
+
+5 .)
+SELECT DISTINCT fluss.Name FROM fluss
+JOIN stadtfluss ON fluss.FNR = stadtfluss.FNR
+JOIN ort ON stadtfluss.ONR = ort.ONR
+JOIN land on ort.LNR = land.LNR
+WHERE land.Name like 'Deutschland';
+
+6 .)
+
+CREATE TABLE sprache (
+SprachID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Name varchar(255) NOT NULL
+);
+
+CREATE TABLE laendersprache (
+FOREIGN KEY (LNR) REFERENCES land(LNR) PRIMARY KEY,
+FOREIGN KEY (SprachID) REFERENCES sprache(SprachID),
+Anteil float(3,2)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
